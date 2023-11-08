@@ -8,6 +8,6 @@ edition = "2021"
 [dependencies]
 clap = "4.4.7"
 itertools = "0.11.0"
-ola-lang-abi = "1.0.0"
+ola-lang-abi = "1.0.1"
 regex = "1.10.2"
 serde_json = "1.0.108"
