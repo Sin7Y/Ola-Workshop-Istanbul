@@ -1,9 +1,9 @@
-use std::fs::File;
-
 use clap::{arg, Arg, Command};
-use itertools::Itertools;
 use ola_lang_abi::{Abi, Type, Value};
 use regex::Regex;
+use std::fs::{self, File};
+use std::io::Write;
+use std::path::Path;
 
 fn main() {
     let matches = Command::new("toy_encoder")
@@ -45,8 +45,17 @@ fn main() {
         .encode_input_with_signature(function_sig, &params)
         .unwrap();
 
-    let input_string = input.iter().join(" ");
-    println!("{}", input_string);
+    let inputs_dir = Path::new("inputs");
+    if !inputs_dir.exists() {
+        fs::create_dir(inputs_dir).unwrap();
+    }
+    let func_name = function_sig.split('(').next().unwrap();
+    let input_file_name = format!("input_{}.txt", func_name);
+    let input_file_path = inputs_dir.join(input_file_name);
+    let mut input_file = File::create(input_file_path).unwrap();
+    for number in input {
+        writeln!(input_file, "{}", number).unwrap();
+    }
 }
 
 fn get_args_type_from_function_sig(function_sig: String) -> Vec<String> {
