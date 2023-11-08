@@ -1,6 +1,6 @@
 use std::fs::File;
 
-use clap::{arg, Command};
+use clap::{arg, Arg, Command};
 use itertools::Itertools;
 use ola_lang_abi::{Abi, Type, Value};
 use regex::Regex;
@@ -10,9 +10,15 @@ fn main() {
         .version("0.0.1")
         .author("Ola@Istanbul")
         .about("Encode inputs")
-        .arg(arg!(-i --abi <INPUT> "Must set a abi file"))
+        .arg(arg!(-b --abi <INPUT> "Must set a abi file"))
         .arg(arg!(-f --fn_sig <INPUT> "Must set a function signature"))
-        .arg(arg!(-a --args <INPUT> "args"))
+        .arg(
+            Arg::new("args")
+                .short('a')
+                .help("args")
+                .num_args(1..)
+                .last(true),
+        )
         .get_matches();
 
     let abi_path = matches
