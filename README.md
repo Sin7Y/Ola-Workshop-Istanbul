@@ -143,6 +143,8 @@ Discord: http://discord.gg/vDFy7YEG6j
 
 Email: contact@olavm.org
 
+Feedback: https://forms.gle/Sy3Aa3MBGSXEy64U8
+
 
 
 
