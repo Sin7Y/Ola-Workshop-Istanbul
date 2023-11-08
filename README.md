@@ -128,7 +128,10 @@ And verify the proof:
 ````
 
 # Benchmark
-todo
+| Algorithm                                       | Execution Instructions | Lines in CPU Table | Mac(8-cpu 16GB-Mem) Execution and Generate trace Time | Mac(8-cpu 16GB-Mem) Prove Time | Linux(32-cpu 256GB-Mem) Execution and Generate Trace Time | Linux(32-cpu 256GB-Mem) Prove Time |
+| :---------------------------------------------- | :--------------------: | :----------------: | :---------------------------------------------------: | :----------------------------: | :-------------------------------------------------------: | :--------------------------------: |
+| Calculate the 47th Fibonacci number 300 times.  |         259915         |        2^18        |                    0.274s, 1.379s                     |            109.263s            |                      1.305s, 1.273s                       |              38.521s               |
+| Calculate the sqrt of 1,073,741,824 7000 times. |         238113         |        2^18        |                    1.191s, 1.335s                     |            109.873s            |                      0.697s, 1.266s                       |              38.654s               |
 
 
 # Open Source Repositories
