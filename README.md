@@ -12,16 +12,16 @@ Here are some resources that can help to better understand Ola and quickly becom
 
 # Workshop Challenge Tutorial
 ## Setting Up the Ola Development Environment
-We have prepared a script for this workshop to facilitate developers in quickly setting up the development environment. You can download it here and execute it in your local workshop directory. [Click to download](https://google.com).
+Create a new folder named ola_workshop, and within it, download the pre-compiled executables [here](https://github.com/Sin7Y/Ola-Workshop-Istanbul/tree/main/tool-chain) that you will need, such as ola and toy_abi, according to your different CPU architectures. Additionally, download the [script](https://github.com/Sin7Y/Ola-Workshop-Istanbul/blob/main/olaws) that encapsulate various operations and place them all in the ola_workshop directory.
 
 Ensure that the script has the permission to be executed：
 ````shell
 chmod +x olaws.sh
 ````
 
-Download the ola-lang compiler and the OlaVM executable files:
+Install the ola-lang compiler tool, olac.
 ````shell
-./olaws.sh -d
+brew install sin7y/ola/olac
 ````
 
 This is a voting contract with some missing logic that needs to be completed:
@@ -90,42 +90,45 @@ contract Voting {
 }
 
 ````
+You can either copy it as vote.ola or download it directly from [here](https://github.com/Sin7Y/Ola-Workshop-Istanbul/blob/main/vote.ola). 
+Ensure that vote.ola is in the same directory as ola, olaws, and toy_abi.
+
+
 Use your favorite editor to fill in the missing logic of the contract. It is recommended to use VSCode; we have provided a VSCode plugin for Ola-lang, which you can find [here](https://marketplace.visualstudio.com/items?itemName=Sin7y.ola).
 
 
 Compile the smart contract:
 ````shell
-./olaws.sh -c --input vote.ola --output vote.json
+./olaws compile vote
 ````
+This command will create a directory named target in the current directory, compile vote.ola, and generate two files: vote_asm.json and vote_abi.json.
 
-Invoke the contract to vote and generate trace:
+Prepare the execution parameters for contract_init:
 ````shell
-./olaws.sh -et --program vote.json --trace trace_vote.json --fname vote --args 1
+./olaws encode -f "contract_init(u32[])" -a "[1,2,3]"
 ````
+You can see the ABI-encoded input parameters in the inputs directory.
 
-Check vote result:
+
+Invoke the contract and execute the contract_init method:
 ````shell
-./olaws.sh -e --program vote.json --trace trace_vote.json --fname check_result
+./olaws execute contract_init
 ````
+This command will start olavm and pass the previously compiled contract target/vote_asm.json and the input parameters inputs/input_contract_init.txt to olavm for execution.
 
-If everything goes well, you will see the message "Congrats! You've completed your first challenge at Ola x ZK Hack Istanbul!" indicating that you have successfully edited, compiled, and executed the contract. Congratulations on completing the task!
-
+Then, you can sequentially encode the parameters for the vote_proposal method and the winningProposal method and invoke them：
+````shell
+./olaws encode -f "vote_proposal(u32)" -a 2
+./olaws execute vote_proposal
+./olaws encode -f "winningProposal()"
+./olaws execute winningProposal
+````
 
 If everything goes well, you will see the message:
 >Congrats! You've completed your first challenge at Ola x ZK Hack Istanbul!
 
 Indicating that you have successfully edited, compiled, and executed the contract. Congratulations on completing the task!
 
-
-You can opt to generate a proof using the trace that was just created:
-````shell
-./olaws.sh -p --trace trace_vote.json --proof proof_vote
-````
-
-And verify the proof:
-````shell
-./olaws.sh -v --proof proof_vote
-````
 
 # Benchmark
 | Algorithm                                       | Execution Instructions | Lines in CPU Table | Mac(8-cpu 16GB-Mem) Execution and Generate trace Time | Mac(8-cpu 16GB-Mem) Prove Time | Linux(32-cpu 256GB-Mem) Execution and Generate Trace Time | Linux(32-cpu 256GB-Mem) Prove Time |
