@@ -19,11 +19,6 @@ Ensure that the script has the permission to be executed：
 chmod +x olaws.sh
 ````
 
-Install the ola-lang compiler tool, olac.
-````shell
-brew install sin7y/ola/olac
-````
-
 This is a voting contract with some missing logic that needs to be completed:
 ````js
 contract Voting {
