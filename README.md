@@ -87,6 +87,7 @@ contract Voting {
 ````
 You can either copy it as vote.ola or download it directly from [here](https://github.com/Sin7Y/Ola-Workshop-Istanbul/blob/main/vote.ola). 
 
+__*Attention*__
 Ensure that `vote.ola` is in the same directory as `ola`, `olaws.sh`, and `toy_abi`, remember, the `ola`, `olac`, `toy_abi` are under tool-chain directory, you can choose one by your OS. For example, mkdir a directory named `foo`, and here is the foo looks like:
 ```shell
 %cd foo
