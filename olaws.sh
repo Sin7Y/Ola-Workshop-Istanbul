@@ -5,7 +5,7 @@ compile() {
   local file_name="$1"
   
   # 调用olac编译器来编译文件
-  olac compile "${file_name}.ola"
+  ./olac compile "${file_name}.ola"
   
   # 检查target文件夹是否存在，如果不存在则创建
   [ ! -d "target" ] && mkdir target
