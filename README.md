@@ -17,11 +17,8 @@ Create a new folder named ola_workshop, and within it, download the pre-compiled
 Ensure that the script has the permission to be executed：
 ````shell
 chmod +x olaws.sh
-````
-
-Install the ola-lang compiler tool, olac.
-````shell
-brew install sin7y/ola/olac
+chmod +x olac
+chmod +x ola
 ````
 
 This is a voting contract with some missing logic that needs to be completed:
@@ -92,7 +89,10 @@ contract Voting {
 ````
 You can either copy it as vote.ola or download it directly from [here](https://github.com/Sin7Y/Ola-Workshop-Istanbul/blob/main/vote.ola). 
 
-Ensure that `vote.ola` is in the same directory as `ola`, `olaws.sh`, and `toy_abi`, remember, the `ola`, `olac`, `toy_abi` are under tool-chain directory, you can choose one by your OS. For example, mkdir a directory named `foo`, and here is the foo looks like:
+__*Attention*__
+Ensure that `vote.ola` is in the same directory as `ola`, `olaws.sh`, and `toy_abi`, remember, the `ola`, `olac`, `toy_abi` are under tool-chain directory, you can choose one by your OS.
+
+For example, mkdir a directory named `foo`, and here is the foo looks like:
 ```shell
 %cd foo
 %ls
