@@ -17,6 +17,8 @@ Create a new folder named ola_workshop, and within it, download the pre-compiled
 Ensure that the script has the permission to be executed：
 ````shell
 chmod +x olaws.sh
+chmod +x olac
+chmod +x ola
 ````
 
 This is a voting contract with some missing logic that needs to be completed:
