@@ -12,7 +12,7 @@ Here are some resources that can help to better understand Ola and quickly becom
 
 # Workshop Challenge Tutorial
 ## Setting Up the Ola Development Environment
-Create a new folder named ola_workshop, and within it, download the pre-compiled executables [here](https://github.com/Sin7Y/Ola-Workshop-Istanbul/tree/main/tool-chain) that you will need, such as ola and toy_abi, according to your different CPU architectures. Additionally, download the [script](https://github.com/Sin7Y/Ola-Workshop-Istanbul/blob/main/olaws) that encapsulate various operations and place them all in the ola_workshop directory.
+Create a new folder named ola_workshop, and within it, download the pre-compiled executables [here](https://github.com/Sin7Y/Ola-Workshop-Istanbul/tree/main/tool-chain) that you will need, such as ola and toy_abi, according to your different CPU architectures. Additionally, download the [script](https://github.com/Sin7Y/Ola-Workshop-Istanbul/blob/main/olaws.sh) that encapsulate various operations and place them all in the ola_workshop directory.
 
 Ensure that the script has the permission to be executed：
 ````shell
