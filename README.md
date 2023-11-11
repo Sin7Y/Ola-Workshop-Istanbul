@@ -12,16 +12,13 @@ Here are some resources that can help to better understand Ola and quickly becom
 
 # Workshop Challenge Tutorial
 ## Setting Up the Ola Development Environment
-Create a new folder named ola_workshop, and within it, download the pre-compiled executables [here](https://github.com/Sin7Y/Ola-Workshop-Istanbul/tree/main/tool-chain) that you will need, such as ola and toy_abi, according to your different CPU architectures. Additionally, download the [script](https://github.com/Sin7Y/Ola-Workshop-Istanbul/blob/main/olaws) that encapsulate various operations and place them all in the ola_workshop directory.
+Create a new folder named ola_workshop, and within it, download the pre-compiled executables [here](https://github.com/Sin7Y/Ola-Workshop-Istanbul/tree/main/tool-chain) that you will need, such as ola and toy_abi, according to your different CPU architectures. Additionally, download the [script](https://github.com/Sin7Y/Ola-Workshop-Istanbul/blob/main/olaws.sh) that encapsulate various operations and place them all in the ola_workshop directory.
 
 Ensure that the script has the permission to be executed：
 ````shell
 chmod +x olaws.sh
-````
-
-Install the ola-lang compiler tool, olac.
-````shell
-brew install sin7y/ola/olac
+chmod +x olac
+chmod +x ola
 ````
 
 This is a voting contract with some missing logic that needs to be completed:
@@ -91,41 +88,53 @@ contract Voting {
 
 ````
 You can either copy it as vote.ola or download it directly from [here](https://github.com/Sin7Y/Ola-Workshop-Istanbul/blob/main/vote.ola). 
-Ensure that vote.ola is in the same directory as ola, olaws, and toy_abi.
 
+__*Attention*__
+Ensure that `vote.ola` is in the same directory as `ola`, `olaws.sh`, and `toy_abi`, remember, the `ola`, `olac`, `toy_abi` are under tool-chain directory, you can choose one by your OS.
+
+For example, mkdir a directory named `foo`, and here is the foo looks like:
+```shell
+%cd foo
+%ls
+ola    olac    olaws.sh    toy_abi    vote.ola
+```
+
+Then you can do the rest in the foo directory.
 
 Use your favorite editor to fill in the missing logic of the contract. It is recommended to use VSCode; we have provided a VSCode plugin for Ola-lang, which you can find [here](https://marketplace.visualstudio.com/items?itemName=Sin7y.ola).
 
 
 Compile the smart contract:
 ````shell
-./olaws compile vote
+./olaws.sh compile vote
 ````
-This command will create a directory named target in the current directory, compile vote.ola, and generate two files: vote_asm.json and vote_abi.json.
+This command will create a directory named target in the current directory, compile `vote.ola`, and generate two files: `vote_asm.json` and `vote_abi.json`.
 
 Prepare the execution parameters for contract_init:
 ````shell
-./olaws encode -f "contract_init(u32[])" -a "[1,2,3]"
+./olaws.sh encode -f "contract_init(u32[])" -a "[1,2,3]"
 ````
 You can see the ABI-encoded input parameters in the inputs directory.
 
 
 Invoke the contract and execute the contract_init method:
 ````shell
-./olaws execute contract_init
+./olaws.sh execute contract_init
 ````
-This command will start olavm and pass the previously compiled contract target/vote_asm.json and the input parameters inputs/input_contract_init.txt to olavm for execution.
+This command will start olavm and pass the previously compiled contract `target/vote_asm.json` and the input parameters `inputs/input_contract_init.txt` to olavm for execution.
 
-Then, you can sequentially encode the parameters for the vote_proposal method and the winningProposal method and invoke them：
+Then, you can sequentially encode the parameters for the vote_proposal method and the `winningProposal` method and invoke them：
 ````shell
-./olaws encode -f "vote_proposal(u32)" -a 2
-./olaws execute vote_proposal
-./olaws encode -f "winningProposal()"
-./olaws execute winningProposal
+./olaws.sh encode -f "vote_proposal(u32)" -a 2
+./olaws.sh execute vote_proposal
+./olaws.sh encode -f "winningProposal()"
+./olaws.sh execute winningProposal
 ````
 
 If everything goes well, you will see the message:
->Congrats! You've completed your first challenge at Ola x ZK Hack Istanbul!
+```shell
+Congrats! You've completed your first challenge at Ola x ZK Hack Istanbul!
+```
 
 Indicating that you have successfully edited, compiled, and executed the contract. Congratulations on completing the task!
 
